@@ -14,20 +14,31 @@ app.use(express.static('public'));
 
 app.get('/', (req, res) => {
   res.render('index', {
-    title: 'WeatherApp',
+    title: 'WeatherApp - Home',
   });
 });
 
 app.get('/about', (req, res) => {
   res.render('about', {
-    title: 'About',
+    title: 'WeatherApp - About Us',
   });
 });
 
 app.get('/help', (req, res) => {
-  res.render('index', {
-    title: 'WeatherApp',
+  res.render('help', {
+    title: 'WeatherApp - Help',
   });
+});
+
+app.get('/help/*', (req, res) => {
+  res.render('help', {
+    title: 'WeatherApp - Help',
+    error: 'Não encontramos nenhum artigo sobre esse assunto',
+  });
+});
+
+app.get('*', (req, res) => {
+  res.render('404');
 });
 
 app.listen(3000, () => {
