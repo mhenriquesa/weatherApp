@@ -9,6 +9,7 @@ const Weather = function (dataFromAPI) {
   this.temp = dataFromAPI.current.temp;
   this.feels_like = dataFromAPI.current.feels_like;
   this.icon = dataFromAPI.current.weather[0].icon;
+  this.reference = null;
 };
 
 Weather.prototype.print = function () {
@@ -24,6 +25,7 @@ Weather.getWeatherFrom = coords => {
       .then(dataFromAPI => {
         let forecast = new Weather(dataFromAPI);
         forecast.print();
+        forecast.reference = coords.local;
         resolve(forecast);
       })
       .catch(err => {

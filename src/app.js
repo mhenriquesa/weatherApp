@@ -65,6 +65,7 @@ app.get('/weather', (req, res) => {
         forecast: forecast.description,
         feels_like: forecast.feels_like,
         icon: forecast.icon,
+        local: forecast.reference,
       });
     })
     .catch(err => {

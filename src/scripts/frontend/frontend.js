@@ -20,7 +20,7 @@ form.addEventListener('submit', e => {
       if (data.error) return (message1.innerText = data.error);
 
       icon.setAttribute('src', `http://openweathermap.org/img/wn/${data.icon}@2x.png`);
-      message1.innerText = data.address;
+      message1.innerText = data.local;
       message2.innerText = data.forecast;
       message3.innerText = Math.round(data.temp) + 'ºC';
     });
