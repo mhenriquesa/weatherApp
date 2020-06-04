@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon src/app -e js,hbs --ignore public"
+    "start": "start nodemon src/app -e js,hbs --ignore public/ && start webpack --config webpack.dev.js --watch"
   },
   "keywords": [],
   "author": "",

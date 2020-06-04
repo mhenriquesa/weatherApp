@@ -5,8 +5,10 @@ const dotenv = require('dotenv');
 dotenv.config({ path: path.resolve(__dirname, '.env') });
 
 const Weather = function (dataFromAPI) {
-  (this.description = dataFromAPI.current.weather[0].description),
-    (this.temp = dataFromAPI.current.temp);
+  this.description = dataFromAPI.current.weather[0].description;
+  this.temp = dataFromAPI.current.temp;
+  this.feels_like = dataFromAPI.current.feels_like;
+  this.icon = dataFromAPI.current.weather[0].icon;
 };
 
 Weather.prototype.print = function () {
@@ -16,7 +18,7 @@ Weather.prototype.print = function () {
 
 Weather.getWeatherFrom = coords => {
   return new Promise(async (resolve, reject) => {
-    const weatherAPI = `http://api.openweathermap.org/data/2.5/onecall?lat=${coords.lat}&lon=${coords.long}&units=metric&lang=pt_br&${process.env.WEATHERAPI}`;
+    const weatherAPI = `http://api.openweathermap.org/data/2.5/onecall?lat=${coords.lat}&lon=${coords.long}&units=metric&exclude=hourly&lang=pt_br&${process.env.WEATHERAPI}`;
     await requester
       .requestingAPI(weatherAPI)
       .then(dataFromAPI => {

@@ -9,6 +9,10 @@ app.set('view engine', 'hbs');
 app.set('views', 'src/views');
 hbs.registerPartials('src/views/includes');
 
+hbs.registerHelper('isHome', function (title) {
+  return title === 'WeatherApp - Home';
+});
+
 //Setup static directory to serve
 app.use(express.static('public'));
 
@@ -46,7 +50,6 @@ app.get('/weather', (req, res) => {
     });
   }
 
-  console.log(req.query);
   if (!req.query.address) {
     return res.send({
       error: 'Você deve informar um localização',
@@ -55,10 +58,13 @@ app.get('/weather', (req, res) => {
   forecastService
     .getCurrentWeather(req.query.address)
     .then(forecast => {
+      console.log('Mostrando Foreast', forecast);
       res.send({
-        forecast: forecast.description,
-        temp: forecast.temp,
         address: req.query.address,
+        temp: forecast.temp,
+        forecast: forecast.description,
+        feels_like: forecast.feels_like,
+        icon: forecast.icon,
       });
     })
     .catch(err => {

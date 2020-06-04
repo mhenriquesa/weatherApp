@@ -1,7 +1,7 @@
 const path = require('path');
 const common = require('./webpack.common');
 const merge = require('webpack-merge');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+// const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = merge(common, {
   mode: 'development',
@@ -9,12 +9,7 @@ module.exports = merge(common, {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'public/scripts'),
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      title: 'Custom template using Handlebars',
-      template: './src/views/index.hbs',
-    }),
-  ],
+  // plugins: [new HtmlWebpackPlugin({})],
   module: {
     rules: [
       {

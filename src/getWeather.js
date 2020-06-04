@@ -5,13 +5,8 @@ const getCurrentWeather = userQuery => {
   return new Promise((resolve, reject) => {
     Coords.findCoordByQueryUser(userQuery)
       .then(coords => Weather.getWeatherFrom(coords))
-      .then(forecast => {
-        resolve(forecast);
-      })
-      .catch(err => {
-        console.log(err);
-        reject(err);
-      });
+      .then(forecast => resolve(forecast))
+      .catch(err => reject(err));
   });
 };
 
