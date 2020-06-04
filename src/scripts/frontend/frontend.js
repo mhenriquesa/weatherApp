@@ -8,7 +8,10 @@ const icon = document.getElementById('icon');
 form.addEventListener('submit', e => {
   e.preventDefault();
   const location = input.value;
+  icon.setAttribute('src', ``);
   message1.innerText = 'Buscando localização...';
+  message2.innerText = '';
+  message3.innerText = '';
 
   fetch(`http://localhost:3000/weather?address=${location}`).then(response => {
     response.json().then(data => {
