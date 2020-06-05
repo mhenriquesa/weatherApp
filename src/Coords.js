@@ -2,7 +2,7 @@ const path = require('path');
 const requester = require('./requester');
 const dotenv = require('dotenv');
 
-dotenv.config({ path: path.resolve(__dirname, '.env') });
+dotenv.config({ path: path.join(__dirname, '../.env') });
 
 class Coords {
   constructor(dataFromAPI) {
