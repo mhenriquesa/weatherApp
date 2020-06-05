@@ -1,8 +1,14 @@
+const path = require('path');
 const express = require('express');
 const hbs = require('hbs');
 const forecastService = require('./getWeather');
+const dotenv = require('dotenv');
+
+dotenv.config({ path: path.join(__dirname, '../.env') });
 
 const app = express();
+let port = process.env.PORT;
+if (port === null || port === '') return (port = 3000);
 
 //Setup handlebars engine and views location
 app.set('view engine', 'hbs');
@@ -80,6 +86,6 @@ app.get('*', (req, res) => {
   res.render('404');
 });
 
-app.listen(3000, () => {
+app.listen(port, () => {
   console.log('Server is up running');
 });
